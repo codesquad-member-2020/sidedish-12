@@ -18,16 +18,16 @@ import javax.websocket.server.PathParam;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class LoginController {
 
-    @Value("base_url")
+    @Value("${base_url}")
     private String baseUrl;
 
-    @Value("github_client_id")
+    @Value("${github_client_id}")
     private String client_id;
 
-    @Value("github_client_secret")
+    @Value("${github_client_secret}")
     private String client_secret;
 
-    @Value("github_redirect_url")
+    @Value("${github_redirect_url}")
     private String redirectUrl;
   
     private static final LoginService loginService = new LoginService();
