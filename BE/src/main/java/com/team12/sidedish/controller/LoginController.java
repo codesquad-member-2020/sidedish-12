@@ -18,29 +18,34 @@ import javax.websocket.server.PathParam;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class LoginController {
 
-    @Value("${github_redirect_url}")
-    private String redirect_url;
+    @Value("base_url")
+    private String baseUrl;
 
-    @Value("${github_client_id}")
+    @Value("github_client_id")
     private String client_id;
 
-    @Value("${github_client_secret}")
+    @Value("github_client_secret")
     private String client_secret;
 
+    @Value("github_redirect_url")
+    private String redirectUrl;
+  
     private static final LoginService loginService = new LoginService();
 
     @GetMapping("/githubLogin")
     public RedirectView githubLogin() {
-        RedirectView redirectView = new RedirectView();
-        String redirectUrl = loginService.getRedirectUrl(client_id, redirect_url);
 
-        redirectView.setUrl(redirectUrl);
+        RedirectView redirectView = new RedirectView();
+      
+        String url = loginService.getRedirectUrl(client_id, redirectUrl);
+        redirectView.setUrl(url);
         return redirectView;
     }
 
     @GetMapping("/login")
     public RedirectView login(@PathParam("code") String code, HttpServletResponse httpServletResponse) {
-        LoginToken response = loginService.getAccessToken(code, client_id, client_secret, redirect_url);
+        LoginToken response = loginService.getAccessToken(code, client_id, client_secret, redirectUrl);
+
         User responseUer = loginService.getUserInfo(response.getTokenType(), response.getAccessToken());
 
         String jws = loginService.generateJwtToken(responseUer.getUserId());
@@ -52,7 +57,7 @@ public class LoginController {
         httpServletResponse.addCookie(cookie);
         RedirectView redirectView = new RedirectView();
 
-        redirectView.setUrl("/");
+        redirectView.setUrl(baseUrl);
 
         return redirectView;
     }
