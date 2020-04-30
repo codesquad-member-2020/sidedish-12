@@ -21,7 +21,7 @@ public class DishRepository {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    CategoryRepository categoryRepository;
+    private CategoryRepository categoryRepository;
 
     @Autowired
     public DishRepository(DataSource dataSource) {
