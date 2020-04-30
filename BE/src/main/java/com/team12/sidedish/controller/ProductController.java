@@ -33,20 +33,17 @@ public class ProductController {
 
 //      하위 카테고리가 없는 경우
         if (!dishes.isEmpty()) {
-            CategoryDto categoryDto = new CategoryDto(category);
             List<DishDto> dishDtos = dishes.stream().map(DishDto::new).collect(Collectors.toList());
-            categoryDto.setItems(dishDtos);
+            CategoryDto categoryDto = new CategoryDto(category, dishDtos);
             return ResponseDto.OK(categoryDto);
         }
 
 //      하위 카테고리가 있는 경우
         List<Category> categories = categoryRepository.findSubCategoryByParentId(category.getId());
         List<CategoryDto> categoryDtos = categories.stream().map(c -> {
-            CategoryDto subCategoryDtos = new CategoryDto(c);
             List<Dish> subDishes = dishRepository.findByCategoryId(c.getId());
             List<DishDto> subDishDtos = subDishes.stream().map(DishDto::new).collect(Collectors.toList());
-            subCategoryDtos.setItems(subDishDtos);
-            return subCategoryDtos;
+            return new CategoryDto(c, subDishDtos);
         }).collect(Collectors.toList());
 
         return ResponseDto.OK(categoryDtos);

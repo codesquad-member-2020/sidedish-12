@@ -16,9 +16,10 @@ public class CategoryDto {
 
     private List<DishDto> banchans = new ArrayList<>();
 
-    public CategoryDto(Category category) {
+    public CategoryDto(Category category, List<DishDto> banchans) {
         this.categoryId = category.getId();
         this.name = category.getName();
+        this.banchans = banchans;
     }
 
     public CategoryDto() {}
@@ -33,10 +34,6 @@ public class CategoryDto {
 
     public List<DishDto> getBanchans() {
         return banchans;
-    }
-
-    public void setItems(List<DishDto> banchans) {
-        this.banchans = banchans;
     }
 
     @Override
