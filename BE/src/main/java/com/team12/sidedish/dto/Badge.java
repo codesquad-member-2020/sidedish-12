@@ -1,31 +1,35 @@
 package com.team12.sidedish.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.StringJoiner;
 
 public class Badge {
 
-    private String badge_name;
+    @JsonProperty("badge_name")
+    private String badgeName;
 
-    private String badge_color;
+    @JsonProperty("badge_color")
+    private String badgeColor;
 
-    public Badge(String badge_name, String badge_color) {
-        this.badge_name = badge_name;
-        this.badge_color = badge_color;
+    public Badge(String badgeName, String badgeColor) {
+        this.badgeName = badgeName;
+        this.badgeColor = badgeColor;
     }
 
-    public String getBadge_name() {
-        return badge_name;
+    public String getBadgeName() {
+        return badgeName;
     }
 
-    public String getBadge_color() {
-        return badge_color;
+    public String getBadgeColor() {
+        return badgeColor;
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", Badge.class.getSimpleName() + "[", "]")
-                .add("badge_name='" + badge_name + "'")
-                .add("badge_color='" + badge_color + "'")
+                .add("badgeName='" + badgeName + "'")
+                .add("badgeColor='" + badgeColor + "'")
                 .toString();
     }
 }

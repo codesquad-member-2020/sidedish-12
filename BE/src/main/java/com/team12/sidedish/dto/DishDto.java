@@ -1,5 +1,6 @@
 package com.team12.sidedish.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.team12.sidedish.domain.Dish;
 import com.team12.sidedish.util.BadgeParser;
 import com.team12.sidedish.util.StringParser;
@@ -15,15 +16,18 @@ public class DishDto {
 
     private String alt;
 
-    private List<String> delivery_type;
+    @JsonProperty("delivery_type")
+    private List<String> deliveryType;
 
     private String title;
 
     private String description;
 
-    private String n_price;
+    @JsonProperty("n_price")
+    private String nPrice;
 
-    private String s_price;
+    @JsonProperty("s_price")
+    private String sPrice;
 
     private List<Badge> badge;
 
@@ -31,11 +35,11 @@ public class DishDto {
         this.id = dish.getId();
         this.image = dish.getImage();
         this.alt = dish.getAlt();
-        this.delivery_type = StringParser.parseToArray(dish.getDeliveryType());
+        this.deliveryType = StringParser.parseToArray(dish.getDeliveryType());
         this.title = dish.getTitle();
         this.description = dish.getDescription();
-        this.n_price = dish.getN_price();
-        this.s_price = dish.getS_price();
+        this.nPrice = dish.getnPrice();
+        this.sPrice = dish.getsPrice();
         this.badge = BadgeParser.parse( StringParser.parseToArray(dish.getBadge()));
     }
 
@@ -51,8 +55,8 @@ public class DishDto {
         return alt;
     }
 
-    public List<String> getDelivery_type() {
-        return delivery_type;
+    public List<String> getDeliveryType() {
+        return deliveryType;
     }
 
     public String getTitle() {
@@ -63,12 +67,12 @@ public class DishDto {
         return description;
     }
 
-    public String getN_price() {
-        return n_price;
+    public String getnPrice() {
+        return nPrice;
     }
 
-    public String getS_price() {
-        return s_price;
+    public String getsPrice() {
+        return sPrice;
     }
 
     public List<Badge> getBadge() {
@@ -81,11 +85,11 @@ public class DishDto {
                 .add("id=" + id)
                 .add("image='" + image + "'")
                 .add("alt='" + alt + "'")
-                .add("delivery_type=" + delivery_type)
+                .add("deliveryType=" + deliveryType)
                 .add("title='" + title + "'")
                 .add("description='" + description + "'")
-                .add("n_price='" + n_price + "'")
-                .add("s_price='" + s_price + "'")
+                .add("nPrice='" + nPrice + "'")
+                .add("sPrice='" + sPrice + "'")
                 .add("badge=" + badge)
                 .toString();
     }

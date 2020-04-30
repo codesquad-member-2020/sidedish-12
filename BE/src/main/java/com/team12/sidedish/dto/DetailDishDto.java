@@ -1,5 +1,6 @@
 package com.team12.sidedish.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.team12.sidedish.domain.Dish;
 import com.team12.sidedish.util.StringParser;
 
@@ -10,43 +11,54 @@ public class DetailDishDto {
 
   private String title;
 
-  private String top_image;
+  @JsonProperty("top_image")
+  private String topImage;
 
-  private List<String> thumb_images;
+  @JsonProperty("thumb_images")
+  private List<String> thumbImages;
 
   private String description;
 
   private String point;
 
-  private String delivery_info;
+  @JsonProperty("delivery_info")
+  private String deliveryInfo;
 
-  private String delivery_fee;
+  @JsonProperty("delivery_fee")
+  private String deliveryFee;
 
-  private String n_price;
+  @JsonProperty("n_price")
+  private String nPrice;
 
-  private String s_price;
+  @JsonProperty("s_price")
+  private String sPrice;
 
-  private List<String> detail_section;
+  @JsonProperty("detail_section")
+  private List<String> detailSection;
 
   public DetailDishDto(Dish dish) {
-    this.top_image = dish.getTopImage();
-    this.thumb_images = StringParser.parseToArray(dish.getThumbImages());
+    this.topImage = dish.getTopImage();
+    this.thumbImages = StringParser.parseToArray(dish.getThumbImages());
     this.description = dish.getDescription();
     this.point = dish.getPoint();
-    this.delivery_fee = dish.getDeliveryFee();
-    this.delivery_info = dish.getDeliveryInfo();
-    this.n_price = dish.getN_price();
-    this.s_price = dish.getS_price();
-    this.detail_section  = StringParser.parseToArray(dish.getDetailSection());
+    this.deliveryFee = dish.getDeliveryFee();
+    this.deliveryInfo = dish.getDeliveryInfo();
+    this.nPrice = dish.getnPrice();
+    this.sPrice = dish.getsPrice();
+    this.detailSection  = StringParser.parseToArray(dish.getDetailSection());
     this.title = dish.getTitle();
   }
 
-  public String getTop_image() {
-    return top_image;
+  public String getTitle() {
+    return title;
   }
 
-  public List<String> getThumb_images() {
-    return thumb_images;
+  public String getTopImage() {
+    return topImage;
+  }
+
+  public List<String> getThumbImages() {
+    return thumbImages;
   }
 
   public String getDescription() {
@@ -57,43 +69,39 @@ public class DetailDishDto {
     return point;
   }
 
-  public String getDelivery_info() {
-    return delivery_info;
+  public String getDeliveryInfo() {
+    return deliveryInfo;
   }
 
-  public String getDelivery_fee() {
-    return delivery_fee;
+  public String getDeliveryFee() {
+    return deliveryFee;
   }
 
-  public String getN_price() {
-    return n_price;
+  public String getnPrice() {
+    return nPrice;
   }
 
-  public String getS_price() {
-    return s_price;
+  public String getsPrice() {
+    return sPrice;
   }
 
-  public List<String> getDetail_section() {
-    return detail_section;
-  }
-
-  public String getTitle() {
-    return title;
+  public List<String> getDetailSection() {
+    return detailSection;
   }
 
   @Override
   public String toString() {
     return new StringJoiner(", ", DetailDishDto.class.getSimpleName() + "[", "]")
             .add("title='" + title + "'")
-            .add("top_image='" + top_image + "'")
-            .add("thumb_images=" + thumb_images)
+            .add("topImage='" + topImage + "'")
+            .add("thumbImages=" + thumbImages)
             .add("description='" + description + "'")
             .add("point='" + point + "'")
-            .add("delivery_info='" + delivery_info + "'")
-            .add("delivery_fee='" + delivery_fee + "'")
-            .add("n_price='" + n_price + "'")
-            .add("s_price='" + s_price + "'")
-            .add("detail_section=" + detail_section)
+            .add("deliveryInfo='" + deliveryInfo + "'")
+            .add("deliveryFee='" + deliveryFee + "'")
+            .add("nPrice='" + nPrice + "'")
+            .add("sPrice='" + sPrice + "'")
+            .add("detailSection=" + detailSection)
             .toString();
   }
 }

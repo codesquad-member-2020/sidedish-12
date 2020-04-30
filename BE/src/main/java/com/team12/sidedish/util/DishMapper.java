@@ -21,8 +21,8 @@ public class DishMapper implements RowMapper<Dish> {
         dish.setPoint(rs.getString("point"));
         dish.setDeliveryInfo(rs.getString("delivery_info"));
         dish.setDeliveryFee(rs.getString("delivery_fee"));
-        dish.setN_price(rs.getString("n_price"));
-        dish.setS_price(rs.getString("s_price"));
+        dish.setnPrice(rs.getString("n_price"));
+        dish.setsPrice(rs.getString("s_price"));
         dish.setDetailSection(rs.getString("detail_section"));
         return dish;
     }

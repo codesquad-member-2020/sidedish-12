@@ -18,9 +18,9 @@ public class Dish {
 
     private String description;
 
-    private String s_price;
+    private String sPrice;
 
-    private String n_price;
+    private String nPrice;
 
     private String badge;
 
@@ -65,12 +65,12 @@ public class Dish {
         this.description = description;
     }
 
-    public void setS_price(String s_price) {
-        this.s_price = s_price;
+    public void setsPrice(String sPrice) {
+        this.sPrice = sPrice;
     }
 
-    public void setN_price(String n_price) {
-        this.n_price = n_price;
+    public void setnPrice(String nPrice) {
+        this.nPrice = nPrice;
     }
 
     public void setBadge(String badge) {
@@ -129,12 +129,12 @@ public class Dish {
         return description;
     }
 
-    public String getS_price() {
-        return s_price;
+    public String getsPrice() {
+        return sPrice;
     }
 
-    public String getN_price() {
-        return n_price;
+    public String getnPrice() {
+        return nPrice;
     }
 
     public String getBadge() {
@@ -174,8 +174,8 @@ public class Dish {
                 .add("deliveryType='" + deliveryType + "'")
                 .add("title='" + title + "'")
                 .add("description='" + description + "'")
-                .add("s_price='" + s_price + "'")
-                .add("n_price='" + n_price + "'")
+                .add("sPrice='" + sPrice + "'")
+                .add("sPrice='" + sPrice + "'")
                 .add("badge='" + badge + "'")
                 .add("topImage='" + topImage + "'")
                 .add("thumbImages='" + thumbImages + "'")
