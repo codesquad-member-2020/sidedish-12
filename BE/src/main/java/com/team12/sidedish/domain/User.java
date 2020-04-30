@@ -7,7 +7,6 @@ import java.util.StringJoiner;
 
 public class User {
 
-    @JsonProperty("login")
     private String userId;
 
     public String getUserId() {
