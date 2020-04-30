@@ -6,6 +6,8 @@ import com.team12.sidedish.dto.CategoryDto;
 import com.team12.sidedish.dto.DetailDishDto;
 import com.team12.sidedish.dto.DishDto;
 import com.team12.sidedish.dto.ResponseDto;
+import com.team12.sidedish.exception.CategoryNotfoundException;
+import com.team12.sidedish.exception.DishNotfoundException;
 import com.team12.sidedish.repository.CategoryRepository;
 import com.team12.sidedish.repository.DishRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,7 @@ public class ProductController {
 
     @GetMapping("/banchans")
     public ResponseDto getBanchansByCategory(@RequestParam(name = "category") String categoryName) {
-        Category category = categoryRepository.findByCategoryName(categoryName);
+        Category category = categoryRepository.findByCategoryName(categoryName).orElseThrow(CategoryNotfoundException::new);
         List<Dish> dishes = dishRepository.findByCategoryId(category.getId());
 
 //      하위 카테고리가 없는 경우
@@ -52,7 +54,7 @@ public class ProductController {
 
     @GetMapping("/banchans/{banchanId}")
     public ResponseDto<DetailDishDto> getBanchan(@PathVariable String banchanId) {
-        Dish dish = dishRepository.findById(banchanId);
+        Dish dish = dishRepository.findById(banchanId).orElseThrow(DishNotfoundException::new);
         DetailDishDto detailDishDto = new DetailDishDto(dish);
 
         return ResponseDto.OK(detailDishDto);
