@@ -1,11 +1,9 @@
 package com.team12.sidedish.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.stereotype.Component;
 
 import java.util.StringJoiner;
 
-@Component
 public class LoginToken {
 
     @JsonProperty("access_token")
